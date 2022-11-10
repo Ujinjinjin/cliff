@@ -1,8 +1,6 @@
-﻿using Cliff.Extensions;
+﻿using System.CommandLine;
+using Cliff.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System.CommandLine;
-using Cliff.ConsoleUtils;
 
 namespace Cliff.Infrastructure;
 
@@ -12,37 +10,23 @@ public sealed class CliService : ICliService
 	/// <inheritdoc />
 	public IServiceProvider ServiceProvider { get; }
 
-	private readonly ILogger _logger;
-	private readonly IConsoleQueue _consoleQueue;
-
-	public CliService(IServiceProvider serviceProvider, IConsoleQueue consoleQueue)
+	public CliService(IServiceProvider serviceProvider)
 	{
 		ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-		_consoleQueue = consoleQueue ?? throw new ArgumentNullException(nameof(consoleQueue));
-
-		_logger = serviceProvider.GetService<ILoggerFactory>()?.CreateLogger<CliService>() ?? throw new ArgumentNullException(nameof(ILoggerFactory));
 	}
 
 	/// <inheritdoc />
 	public async Task ExecuteAsync(string[] args)
 	{
-		try
-		{
-			var rootCommand = ServiceProvider
-				.RegisterControllers()
-				.GetService<RootCommand>();
+		var rootCommand = ServiceProvider
+			.RegisterControllers()
+			.GetService<RootCommand>();
 
-			if (rootCommand is null)
-			{
-				throw new Exception($"Couldn't find any registered {nameof(RootCommand)}");
-			}
-
-			await rootCommand.InvokeAsync(args);
-		}
-		catch (Exception ex)
+		if (rootCommand is null)
 		{
-			_logger.LogError(ex, $"Error occured during command execution with args: {args}");
-			await _consoleQueue.EnqueueOutputAsync("Error! Please try again or contact the maintainer of this solution");
+			throw new Exception($"Couldn't find any registered {nameof(RootCommand)}");
 		}
+
+		await rootCommand.InvokeAsync(args);
 	}
 }
