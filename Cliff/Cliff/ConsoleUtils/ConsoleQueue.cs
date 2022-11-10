@@ -59,7 +59,7 @@ internal sealed class ConsoleQueue : IConsoleQueue, IDisposable
 	/// <inheritdoc />
 	public void Dispose()
 	{
-		_outputQueue?.Clear();
+		_outputQueue.Clear();
 		_thread.Interrupt();
 	}
 }

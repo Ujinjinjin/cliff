@@ -11,7 +11,7 @@ public static class ServiceProviderExtensions
 	public static IServiceProvider RegisterControllers(this IServiceProvider serviceProvider)
 	{
 		var controllers = serviceProvider.GetServices<IController>();
-		foreach (var controller in controllers)
+		foreach (IController controller in controllers)
 		{
 			controller.Register();
 		}
