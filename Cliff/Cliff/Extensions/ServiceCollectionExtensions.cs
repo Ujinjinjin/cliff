@@ -1,7 +1,8 @@
-﻿using Cliff.ConsoleUtils;
-using Cliff.Factories;
+﻿using Cliff.Factories;
 using Cliff.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Cliff.Extensions;
 
@@ -15,6 +16,6 @@ public static class ServiceCollectionExtensions
 		serviceCollection.AddSingleton<IOptionFactory, OptionFactory>();
 		serviceCollection.AddSingleton<ICommandFactory, CommandFactory>();
 		serviceCollection.AddSingleton<ICliService, CliService>();
-		serviceCollection.AddSingleton<IConsoleQueue, ConsoleQueue>();
+		serviceCollection.AddSingleton<ILoggerFactory, NullLoggerFactory>();
 	}
 }

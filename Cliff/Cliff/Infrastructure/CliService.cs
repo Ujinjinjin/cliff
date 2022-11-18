@@ -8,41 +8,39 @@ namespace Cliff.Infrastructure;
 /// <inheritdoc />
 public sealed class CliService : ICliService
 {
-	/// <inheritdoc />
-	public IServiceProvider ServiceProvider { get; }
+	private readonly IServiceProvider _serviceProvider;
 
 	private readonly ILogger _logger;
 
 	public CliService(IServiceProvider serviceProvider)
 	{
-		ServiceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+		_serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 		_logger = serviceProvider.GetService<ILoggerFactory>()?.CreateLogger<CliService>() ?? throw new ArgumentNullException(nameof(ILoggerFactory));
 	}
 
 	/// <inheritdoc />
-	public async Task ExecuteAsync(string[] args)
+	public async Task<int> ExecuteAsync(string[] args)
 	{
-		try
+		var exitCode = await TryExecuteAsync(args);
+		if (exitCode > 0)
 		{
-			await TryExecuteAsync(args);
+			_logger.LogError($"Error occured during command execution with args: {string.Join(", ", args)}");
 		}
-		catch (Exception ex)
-		{
-			_logger.LogError(ex, $"Error occured during command execution with args: {args}");
-		}
+
+		return exitCode;
 	}
 
-	private async Task TryExecuteAsync(string[] args)
+	private async Task<int> TryExecuteAsync(string[] args)
 	{
-		ServiceProvider.RegisterControllers();
+		_serviceProvider.RegisterControllers();
 
-		var root = ServiceProvider.GetService<RootCommand>();
+		var root = _serviceProvider.GetService<RootCommand>();
 
 		if (root is null)
 		{
 			throw new ApplicationException("Root command was not found");
 		}
 
-		await root.InvokeAsync(args);
+		return await root.InvokeAsync(args);
 	}
 }
