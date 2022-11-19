@@ -4,12 +4,12 @@ public static class Arguments
 {
     public static class Success
     {
-        public static string[] Valid = { "test", "success", "-o", "value" };
-        public static string[] Invalid = { "test", "success" };
+        public static readonly string[] Valid = { "test", "success", "-o", "value" };
+        public static readonly string[] Invalid = { "test", "success" };
     }
     
     public static class Fail
     {
-        public static string[] Default = { "test", "fail", "-o", "value" };
+        public static readonly string[] Default = { "test", "fail", "-o", "value" };
     }
 }

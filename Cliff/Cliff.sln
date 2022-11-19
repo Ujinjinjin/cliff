@@ -1,10 +1,12 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliff", "Cliff\Cliff.csproj", "{A59191E4-C58D-4017-9FB3-096389ED08BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliff.InfrastructureTests", "Cliff.InfrastructureTests\Cliff.InfrastructureTests.csproj", "{D9CCFA51-64D4-4421-94B8-93D52412FCB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliff.UnitTests", "Cliff.UnitTests\Cliff.UnitTests.csproj", "{5D3D42F7-A09F-4ED7-B3F0-361DEC26C2A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliff.Playground", "Cliff.Playground\Cliff.Playground.csproj", "{3C0ADEE4-1BB5-4199-B632-3C437CF99019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +26,9 @@ Global
 		{5D3D42F7-A09F-4ED7-B3F0-361DEC26C2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D3D42F7-A09F-4ED7-B3F0-361DEC26C2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D3D42F7-A09F-4ED7-B3F0-361DEC26C2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
