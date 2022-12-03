@@ -11,4 +11,9 @@ public class TestService : ITestService
     {
         throw new ApplicationException();
     }
+
+    public void HiddenAction(string param)
+    {
+        Console.WriteLine(param);
+    }
 }
