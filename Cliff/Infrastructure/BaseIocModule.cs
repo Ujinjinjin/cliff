@@ -7,33 +7,33 @@ namespace Cliff.Infrastructure;
 /// <inheritdoc />
 public abstract class BaseIocModule : IIocModule
 {
-    private readonly string _appName;
-    private readonly string _appDesc;
+	private readonly string _appName;
+	private readonly string _appDesc;
 
-    protected BaseIocModule(string appName, string appDesc)
-    {
-        _appName = appName ?? throw new ArgumentNullException(nameof(appName));
-        _appDesc = appDesc ?? throw new ArgumentNullException(nameof(appDesc));
-    }
+	protected BaseIocModule(string appName, string appDesc)
+	{
+		_appName = appName ?? throw new ArgumentNullException(nameof(appName));
+		_appDesc = appDesc ?? throw new ArgumentNullException(nameof(appDesc));
+	}
 
-    /// <inheritdoc />
-    public IServiceProvider Build()
-    {
-        var collection = new ServiceCollection();
+	/// <inheritdoc />
+	public IServiceProvider Build()
+	{
+		var collection = new ServiceCollection();
 
-        var rootCommand = new RootCommand
-        {
-            Name = _appName,
-            Description = _appDesc,
-        };
-        collection.AddSingleton(rootCommand);
+		var rootCommand = new RootCommand
+		{
+			Name = _appName,
+			Description = _appDesc,
+		};
+		collection.AddSingleton(rootCommand);
 
-        collection.UseCliff();
+		collection.UseCliff();
 
-        RegisterServices(collection);
+		RegisterServices(collection);
 
-        return collection.BuildServiceProvider();
-    }
+		return collection.BuildServiceProvider();
+	}
 
-    protected abstract void RegisterServices(IServiceCollection collection);
+	protected abstract void RegisterServices(IServiceCollection collection);
 }
