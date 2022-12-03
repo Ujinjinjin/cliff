@@ -13,7 +13,7 @@ public interface ICommandFactory
 	/// <summary> Create CLI command </summary>
 	/// <param name="name">Command name</param>
 	/// <param name="description">Command description</param>
-	/// <param name="isHidden">Indicates whether the symbol is hidden</param>
+	/// <param name="visibility">Indicates the symbol visibility</param>
 	/// <param name="options">List of options</param>
-	Command CreateCommand(string name, string description, bool isHidden = false, params Option[] options);
+	Command CreateCommand(string name, string description, Visibility visibility, params Option[] options);
 }
