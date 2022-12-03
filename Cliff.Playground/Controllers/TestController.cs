@@ -66,7 +66,7 @@ public class TestController : CliController
 		var command = CommandFactory.CreateCommand(
 			"hidden",
 			"Hidden command",
-			true,
+			Visibility.Hidden,
 			option
 		);
 
