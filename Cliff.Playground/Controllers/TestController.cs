@@ -7,7 +7,7 @@ namespace Cliff.Playground.Controllers;
 public class TestController : CliController
 {
     private readonly ITestService _testService;
-    
+
     public TestController(
         RootCommand rootCommand,
         ICommandFactory commandFactory,
@@ -24,11 +24,12 @@ public class TestController : CliController
 
     public override void Register()
     {
-        RegisterSuccessfulCommand();
-        RegisterFailingCommand();
+        Register(GetSuccessfulCommand());
+        Register(GetFailingCommand());
+        Register(GetHiddenCommand());
     }
 
-    private void RegisterSuccessfulCommand()
+    private Command GetSuccessfulCommand()
     {
         var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
 
@@ -40,10 +41,10 @@ public class TestController : CliController
 
         command.SetHandler(o => _testService.SuccessfulAction(o), option);
 
-        Register(command);
+        return command;
     }
 
-    private void RegisterFailingCommand()
+    private Command GetFailingCommand()
     {
         var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
 
@@ -55,6 +56,22 @@ public class TestController : CliController
 
         command.SetHandler(o => _testService.FailingAction(o), option);
 
-        Register(command);
+        return command;
+    }
+
+    private Command GetHiddenCommand()
+    {
+        var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
+
+        var command = CommandFactory.CreateCommand(
+            "hidden",
+            "Hidden command",
+            true,
+            option
+        );
+
+        command.SetHandler(o => _testService.HiddenAction(o), option);
+
+        return command;
     }
 }
