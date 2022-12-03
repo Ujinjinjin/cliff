@@ -5,26 +5,26 @@ namespace Cliff.Test.Infrastructure;
 
 public class TestCliProgram
 {
-    private readonly string[] _args;
-    
-    public TestCliProgram(string[] args)
-    {
-        _args = args;
-    }
-    
-    public async Task<int> ExecuteAsync()
-    {
-        IServiceProvider serviceProvider = new TestIocModule("test", "Test cli application")
-            .Build();
+	private readonly string[] _args;
 
-        var cliService = serviceProvider.GetService<ICliService>();
+	public TestCliProgram(string[] args)
+	{
+		_args = args;
+	}
 
-        if (cliService is null)
-        {
-            Console.WriteLine("Warning! CLI Service was not found");
-            return -1;
-        }
+	public async Task<int> ExecuteAsync()
+	{
+		IServiceProvider serviceProvider = new TestIocModule("test", "Test cli application")
+			.Build();
 
-        return await cliService.ExecuteAsync(_args);
-    }
+		var cliService = serviceProvider.GetService<ICliService>();
+
+		if (cliService is null)
+		{
+			Console.WriteLine("Warning! CLI Service was not found");
+			return -1;
+		}
+
+		return await cliService.ExecuteAsync(_args);
+	}
 }

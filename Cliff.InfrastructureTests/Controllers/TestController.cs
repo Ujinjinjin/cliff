@@ -6,55 +6,55 @@ namespace Cliff.Test.Controllers;
 
 public class TestController : CliController
 {
-    private readonly ITestService _testService;
-    
-    public TestController(
-        RootCommand rootCommand,
-        ICommandFactory commandFactory,
-        IOptionFactory optionFactory,
-        ITestService testService
-    ) : base(
-        rootCommand,
-        commandFactory,
-        optionFactory
-    )
-    {
-        _testService = testService ?? throw new ArgumentNullException(nameof(testService));
-    }
+	private readonly ITestService _testService;
 
-    public override void Register()
-    {
-        RegisterSuccessfulCommand();
-        RegisterFailingCommand();
-    }
+	public TestController(
+		RootCommand rootCommand,
+		ICommandFactory commandFactory,
+		IOptionFactory optionFactory,
+		ITestService testService
+	) : base(
+		rootCommand,
+		commandFactory,
+		optionFactory
+	)
+	{
+		_testService = testService ?? throw new ArgumentNullException(nameof(testService));
+	}
 
-    private void RegisterSuccessfulCommand()
-    {
-        var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
+	public override void Register()
+	{
+		RegisterSuccessfulCommand();
+		RegisterFailingCommand();
+	}
 
-        var command = CommandFactory.CreateCommand(
-            "success",
-            "Successful command",
-            option
-        );
+	private void RegisterSuccessfulCommand()
+	{
+		var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
 
-        command.SetHandler(o => _testService.SuccessfulAction(o), option);
+		var command = CommandFactory.CreateCommand(
+			"success",
+			"Successful command",
+			option
+		);
 
-        Register(command);
-    }
+		command.SetHandler(o => _testService.SuccessfulAction(o), option);
 
-    private void RegisterFailingCommand()
-    {
-        var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
+		Register(command);
+	}
 
-        var command = CommandFactory.CreateCommand(
-            "fail",
-            "Failing command",
-            option
-        );
+	private void RegisterFailingCommand()
+	{
+		var option = OptionFactory.CreateOption<string>(new[] { "--output", "-o" }, "Output value", true);
 
-        command.SetHandler(o => _testService.FailingAction(o), option);
+		var command = CommandFactory.CreateCommand(
+			"fail",
+			"Failing command",
+			option
+		);
 
-        Register(command);
-    }
+		command.SetHandler(o => _testService.FailingAction(o), option);
+
+		Register(command);
+	}
 }

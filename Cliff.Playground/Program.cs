@@ -5,14 +5,14 @@ using Cliff.Playground.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
 var serviceProvider = new TestIocModule("test", "Test cli application")
-    .Build();
+	.Build();
 
 var cliService = serviceProvider.GetService<ICliService>();
 
 if (cliService is null)
 {
-    Console.WriteLine("Warning! CLI Service was not found");
-    return;
+	Console.WriteLine("Warning! CLI Service was not found");
+	return;
 }
 
 await cliService.ExecuteAsync(args);
