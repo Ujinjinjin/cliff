@@ -19,11 +19,16 @@ steps:
       command: 'restore'
       projects: ${{ parameters.solution }}
 
+  - task: CmdLine@2
+    displayName: 'remove template projects'
+    inputs:
+      script: 'rm -rfd Cliff.Template/'
+
   - task: DotNetCoreCLI@2
     displayName: 'build projects'
     inputs:
       command: 'build'
-      projects: '**/!(Cliff.Template)/*.csproj'
+      projects: '**/*.csproj'
       arguments: '-c ${{ parameters.buildConfiguration }}'
 
   - task: DotNetCoreCLI@2
