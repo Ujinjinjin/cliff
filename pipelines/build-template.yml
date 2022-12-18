@@ -23,7 +23,7 @@ steps:
     displayName: 'build projects'
     inputs:
       command: 'build'
-      projects: "['**/*.csproj', '!**/Cliff.Template/*']"
+      projects: '**/!(Cliff.Template)/*.csproj'
       arguments: '-c ${{ parameters.buildConfiguration }}'
 
   - task: DotNetCoreCLI@2
