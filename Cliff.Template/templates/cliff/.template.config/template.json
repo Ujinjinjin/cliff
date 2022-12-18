@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Camille Galladjov",
+  "classifications": [ "Common", "Console" ],
+  "identity": "Cliff.Template",
+  "name": "Cliff cli App",
+  "shortName": "cliff",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "preferNameDirectory": true,
+  "symbols":{
+    "name":{
+      "type": "parameter",
+      "datatype":"text",
+      "replaces": "Cliff.Template",
+      "defaultValue": "Cliff.Template"
+    },
+    "joinedRename": {
+      "type": "generated",
+      "generator": "join",
+      "fileRename": "Cliff.Template.csproj",
+      "parameters": {
+        "symbols": [
+          {
+            "type": "ref",
+            "value": "name"
+          },
+          {
+            "type": "const",
+            "value": "csproj"
+          }
+        ],
+        "separator": ".",
+        "removeEmptyValues": true
+      }
+    }
+  }
+}
