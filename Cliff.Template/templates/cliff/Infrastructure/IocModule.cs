@@ -1,10 +1,14 @@
+using Cliff;
 using Cliff.Infrastructure;
+using Cliff.Template.Controllers;
+using Cliff.Template.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-/// <inheritdoc />
-public class TestIocModule : BaseIocModule
+namespace Cliff.Template.Infrastructure;
+
+public class IocModule : BaseIocModule
 {
-	public TestIocModule(string appName, string appDesc)
+	public IocModule(string appName, string appDesc)
 		: base(appName, appDesc)
 	{
 	}

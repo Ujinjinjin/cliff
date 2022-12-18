@@ -1,6 +1,9 @@
 using Cliff;
 using Cliff.Factories;
+using Cliff.Template.Services;
 using System.CommandLine;
+
+namespace Cliff.Template.Controllers;
 
 public class WeatherController : CliController
 {
@@ -27,7 +30,7 @@ public class WeatherController : CliController
 
 	private Command GetDisplayCommand()
 	{
-		var temperature = OptionFactory.CreateOption<int>(new[] { "--temperature", "-t" }, "Temperature in celcius", true);
+		var temperature = OptionFactory.CreateOption<int>(new[] { "--temperature", "-t" }, "Temperature in celsius", true);
 
 		var command = CommandFactory.CreateCommand(
 			"display",

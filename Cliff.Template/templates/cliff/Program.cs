@@ -1,9 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Cliff.Infrastructure;
+using Cliff.Template.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 
-var serviceProvider = new TestIocModule("test", "Test cli application")
+var serviceProvider = new IocModule("Cliff.Template", "Cliff.Template cli application")
 	.Build();
 
 var cliService = serviceProvider.GetService<ICliService>();

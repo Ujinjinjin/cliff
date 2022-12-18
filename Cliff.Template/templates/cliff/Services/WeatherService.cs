@@ -1,12 +1,35 @@
+using System.Text;
+
+namespace Cliff.Template.Services;
+
 public class WeatherService : IWeatherService
 {
 	public void DisplayWeatherConditionMessage(int temperature)
 	{
-		var message = GetWeatherConditionMessage(temperature);
-		Console.WriteLine(message);
+		var weatherConditionMessage = GetWeatherConditionMessage(temperature);
+		Console.WriteLine(weatherConditionMessage);
 	}
 
 	private string GetWeatherConditionMessage(int temperature)
+	{
+		var builder = new StringBuilder();
+
+		var temperatureMessage = GetTemperatureMessage(temperature);
+		var commentary = GetCommentary(temperature);
+
+		builder.Append(temperatureMessage)
+			.Append(Environment.NewLine)
+			.Append(commentary);
+
+		return builder.ToString();
+	}
+
+	private string GetTemperatureMessage(int temperature)
+	{
+		return $"Temperature: {temperature}°";
+	}
+
+	private string GetCommentary(int temperature)
 	{
 		return temperature switch
 		{
