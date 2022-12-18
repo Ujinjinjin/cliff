@@ -7,19 +7,14 @@ trigger:
       - feature/*
       - release/*
   paths:
-    exclude:
-      - Makefile
-      - .editorconfig
-      - Cliff.Playground/*
+    include:
       - Cliff.Template/*
 
 variables:
   - name: 'pkg_name'
-    value: 'Cliff'
-  - name: 'solution'
-    value: 'Cliff.sln'
+    value: 'Cliff.Template'
   - name: 'project'
-    value: 'Cliff/Cliff.csproj'
+    value: 'Cliff.Template/Cliff.Template.csproj'
   - name: 'buildConfiguration'
     value: 'Release'
   - name: 'major'
@@ -27,7 +22,7 @@ variables:
   - name: 'minor'
     value: 1
   - name: 'patch'
-    value: $[counter('cliff', 1)]
+    value: $[counter('cliff-template', 1)]
 
 jobs:
   - job: Linux_x64
@@ -55,12 +50,6 @@ jobs:
           scriptSource: 'filePath'
           scriptPath: 'build-tools/src/version.py'
           arguments: '--major $(major) --minor $(minor) --patch $(patch) --branch $(Build.SourceBranchName)'
-
-      - template: build-template.yml
-        parameters:
-          solution: $(solution)
-          buildPlatform: $(buildPlatform)
-          buildConfiguration: $(buildConfiguration)
 
       - task: DotNetCoreCLI@2
         displayName: 'create nuget package'

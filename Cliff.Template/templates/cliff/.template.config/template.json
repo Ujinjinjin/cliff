@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Camille Galladjov",
+  "classifications": [ "Common", "Console" ],
+  "identity": "Cliff.Template",
+  "name": "CLI application template",
+  "shortName": "cliff",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}

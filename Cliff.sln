@@ -21,7 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{
 	ProjectSection(SolutionItems) = preProject
 		pipelines\build.yml = pipelines\build-nuget.yml
 		pipelines\template.yml = pipelines\build-template.yml
+		pipelines\build-template-project.yml = pipelines\build-template-project.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliff.Template", "Cliff.Template\Cliff.Template.csproj", "{A58581A8-D07B-4BC8-A932-4FD5B47FD4CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +48,10 @@ Global
 		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C0ADEE4-1BB5-4199-B632-3C437CF99019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A58581A8-D07B-4BC8-A932-4FD5B47FD4CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A58581A8-D07B-4BC8-A932-4FD5B47FD4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A58581A8-D07B-4BC8-A932-4FD5B47FD4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A58581A8-D07B-4BC8-A932-4FD5B47FD4CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
